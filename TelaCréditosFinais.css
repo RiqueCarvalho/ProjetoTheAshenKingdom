@@ -1,0 +1,269 @@
+    :root {
+        --bg: #05060d;
+        --fg: #e9e9f2;
+        --accent: #f5c451;
+        --muted: #a9abc0;
+        --line: rgba(245, 196, 81, .35);
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        overflow: hidden;
+        font-family: Georgia, "Times New Roman", serif
+    }
+
+    body {
+        background: radial-gradient(ellipse at 50% 0%, #14313a 0%, var(--bg) 60%)
+    }
+
+    .stage {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
+        mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%)
+    }
+
+    #roll {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        text-align: center;
+        padding: 0 6vw;
+        will-change: transform;
+        transform: translateY(100vh)
+    }
+
+    h1 {
+        font-size: clamp(2rem, 7vw, 3.6rem);
+        letter-spacing: .12em;
+        color: var(--accent);
+        margin: 0 0 20vh;
+        text-shadow: 0 0 24px rgba(245, 196, 81, .45)
+    }
+
+    h2 {
+        font-size: clamp(1.5rem, 5vw, 2.3rem);
+        letter-spacing: .4em;
+        color: var(--accent);
+        margin: 0 0 .3em;
+        text-shadow: 0 0 18px rgba(245, 196, 81, .35)
+    }
+
+    .sub {
+        font-size: clamp(.75rem, 2.4vw, .95rem);
+        letter-spacing: .25em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 2.4em
+    }
+
+    .orn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .8em;
+        margin: 0 auto 2.6em;
+        max-width: 320px;
+        color: var(--accent)
+    }
+
+    .orn::before,
+    .orn::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--line), transparent)
+    }
+
+    section {
+        margin-bottom: 24vh
+    }
+
+    .person {
+        margin: 0 auto 2.6em;
+        max-width: 34rem
+    }
+
+    .person .name {
+        font-size: clamp(1.25rem, 4.4vw, 1.75rem);
+        letter-spacing: .06em;
+        color: var(--fg);
+        margin: 0
+    }
+
+    .person .name::after {
+        content: "";
+        display: block;
+        width: 2.2em;
+        height: 1px;
+        margin: .45em auto .6em;
+        background: var(--accent);
+        opacity: .7
+    }
+
+    .person ul {
+        list-style: none;
+        margin: 0;
+        padding: 0
+    }
+
+    .person li {
+        font-size: clamp(.85rem, 2.9vw, 1.05rem);
+        line-height: 1.55;
+        color: var(--muted);
+        font-style: italic
+    }
+
+    .person li::before {
+        content: "· ";
+        color: var(--accent)
+    }
+
+    .person .role {
+        font-size: clamp(.7rem, 2.3vw, .85rem);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        opacity: .85;
+        margin-bottom: .35em;
+        font-style: normal
+    }
+
+    .final {
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+        line-height: 1.6;
+        max-width: 30ch;
+        margin: 0 auto;
+        padding-bottom: 4vh
+    }
+
+    .final b {
+        display: block;
+        color: var(--accent);
+        margin-top: .8em;
+        font-size: 1.3em;
+        letter-spacing: .15em;
+        text-shadow: 0 0 18px rgba(245, 196, 81, .4)
+    }
+
+    #hint {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+        text-align: center;
+        font: 12px system-ui, sans-serif;
+        color: var(--muted);
+        opacity: .7;
+        pointer-events: none;
+        transition: opacity .6s
+    }
+
+    #replay {
+        position: fixed;
+        left: 50%;
+        bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+        transform: translateX(-50%);
+        display: none;
+        padding: .7em 1.4em;
+        border: 1px solid var(--accent);
+        background: transparent;
+        color: var(--accent);
+        border-radius: 999px;
+        font: 600 14px system-ui, sans-serif;
+        cursor: pointer
+    }
+
+    #start {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2em;
+        background: radial-gradient(ellipse at 50% 0%, #14243a 0%, var(--bg) 70%);
+        cursor: pointer;
+        transition: opacity .8s
+    }
+
+    #start.hide {
+        opacity: 0;
+        pointer-events: none
+    }
+
+    #start h1 {
+        margin: 0;
+        font-size: clamp(2rem, 7vw, 3.6rem)
+    }
+
+    #start span {
+        font: 600 14px system-ui, sans-serif;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        border-radius: 999px;
+        padding: .8em 1.6em
+    }
+
+    #mute {
+        position: fixed;
+        top: calc(12px + env(safe-area-inset-top, 0px));
+        right: 14px;
+        z-index: 5;
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--accent);
+        border-radius: 999px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        cursor: pointer
+    }
+
+    @keyframes glow {
+
+        0%,
+        100% {
+            text-shadow: 0 0 10px rgba(245, 196, 81, .5), 0 0 22px rgba(245, 196, 81, .35);
+            opacity: .9
+        }
+
+        50% {
+            text-shadow: 0 0 18px rgba(245, 196, 81, .95), 0 0 40px rgba(245, 196, 81, .6), 0 0 70px rgba(245, 196, 81, .35);
+            opacity: 1
+        }
+    }
+
+    .final b {
+        animation: glow 2.8s ease-in-out infinite
+    }
+
+    section:last-of-type {
+        margin-bottom: 80vh
+    }
+
+    #blackout {
+        position: fixed;
+        inset: 0;
+        z-index: 8;
+        background: #000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 4s ease-in-out
+    }
+
+    #blackout.on {
+        opacity: 1
+    }
