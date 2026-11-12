@@ -1,0 +1,123 @@
+    :root {
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    html {
+        scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    * {
+        box-sizing: border-box
+    }
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        background: #000;
+        overflow: hidden
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    #stage {
+        position: relative;
+        width: min(100vw, calc(100vh * 1.74));
+        aspect-ratio: 883/508;
+        container-type: inline-size;
+        transition: filter .2s;
+        overflow: hidden
+    }
+
+    .screen {
+        position: absolute;
+        inset: 0;
+        display: none;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        image-rendering: auto
+    }
+
+    .screen.on {
+        display: block
+    }
+
+    button {
+        font-family: Almendra, Georgia, serif;
+        cursor: pointer;
+        border: 0;
+        padding: 0
+    }
+
+    .hs {
+        position: absolute;
+        background: transparent;
+        border-radius: 6px;
+        transition: box-shadow .15s, background .15s
+    }
+
+    .hs:hover,
+    .hs:focus-visible {
+        background: rgba(255, 200, 110, .14);
+        box-shadow: 0 0 14px 2px rgba(255, 170, 60, .55);
+        outline: none
+    }
+
+    .hs:active {
+        background: rgba(255, 200, 110, .28)
+    }
+
+    .hs.round {
+        border-radius: 50%
+    }
+
+    .pill {
+        position: absolute;
+        background: rgb(140, 136, 141);
+        color: #fff;
+        font-weight: 700;
+        font-size: 2.5cqw;
+        border-radius: 999px;
+        text-shadow: 0 1px 2px #000a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: filter .15s
+    }
+
+    .pill.dk {
+        background: rgb(114, 113, 119)
+    }
+
+    .pill:hover,
+    .pill:focus-visible {
+        filter: brightness(1.25);
+        outline: 2px solid #d9a441
+    }
+
+    #toast {
+        position: absolute;
+        left: 50%;
+        bottom: 4%;
+        transform: translateX(-50%);
+        background: #000c;
+        color: #f1e3c8;
+        border: 1px solid #b8872f;
+        padding: .6cqw 2cqw;
+        border-radius: 6px;
+        font: 700 2cqw Almendra, serif;
+        opacity: 0;
+        transition: opacity .25s;
+        pointer-events: none;
+        white-space: nowrap
+    }
+
+    #toast.on {
+        opacity: 1
+    }
