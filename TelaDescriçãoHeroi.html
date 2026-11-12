@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TelaDescriçãoPersonagem</title>
+  <link rel="stylesheet" href="TelaDescriçãoHeroi.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@700&family=DotGothic16&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <div id="app" style="display:contents"></div>
+  <button class="fs" id="fs" aria-label="Alternar tela cheia" title="Tela cheia">⛶</button>
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+    var BG = "assets/fundo-livro.jpg", P1 = "assets/akane.png", P2 = "assets/kurogane.png", P3 = "assets/hiroshi.png";
+    var DARK = "radial-gradient(circle at 50% 35%,#4a3d63,#1f1830 80%)", DARK2 = "radial-gradient(circle at 50% 35%,#5a4a3e,#241915 85%)";
+    var chars = [
+      {
+        ac: "#6a1fd0", img: P1, pbg: DARK, fs: 4.6,
+        info: ["Akane no Yuki (A Neve Carmesim)", "Nome verdadeiro: Akane Hoshikage", "Apelido: Akane no Yuki (A Neve Carmesim)", "Título: A Assassina da Neve Sangrenta", "Origem"],
+        story: "Ele foi um samurai leal que serviu o governo do Japão na guerra. Ao fim do conflito, foi traído, emboscado e deixado para morrer. Sobreviveu e agora vive apenas para se vingar de quem o traiu."
+      },
+      {
+        ac: "#2f9e1f", img: P2, pbg: DARK2, fs: 3.05,
+        info: ["Lore do Personagem: Kurogane no Oni (O Oni de Ferro Negro)", "Nome verdadeiro: Ryūjin “Kuro” Hoshikage", "Apelido: Kurogane no Oni (O Oni de Ferro Negro)", "Título: O Caçador de Sombras do Norte"],
+        story: "Nasceu em uma aldeia isolada nas montanhas nevadas de Hokkai, filho de um ferreiro lendário e de uma sacerdotisa que servia ao espírito da montanha. Quando ainda era criança, um clã rival invadiu a aldeia buscando o segredo da forja de aço negro que seu pai guardava. A aldeia foi queimada. Seu pai foi morto defendendo a forja. Sua mãe foi sacrificada em um ritual."
+      },
+      {
+        ac: "#a3141c", img: P3, pbg: "transparent", fit: "contain", py: "100%", zoom: 1.2, bx: "55%", by: "7%", fs: 2.7,
+        info: ["Lore do Personagem: Hiroshi, o Último Samurai", "Nome verdadeiro: Hiroshi Takamura", "Apelido: O Último Samurai", "Título: Defensor do Povo Perdido / O Herdeiro da Lâmina Quebrada"],
+        story: "Hiroshi era um jovem samurai treinado por seu pai desde pequeno.\nUm dia, seu reino foi destruído pelo general Kurokage, e seu pai desapareceu.\nDeterminado a recuperar seu lar, Hiroshi partiu em busca de justiça.\nDurante sua jornada, enfrentou monstros e poderes sombrios.\nAssim, tornou-se o lendário Último Samurai, defensor de seu povo."
+      }
+    ];
+    // Retrato provisório (SVG) para o personagem sem imagem enviada
+    function placeholder() {
+      var r = function (x, y, w, h, f) { return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + f + '"/>' };
+      return '<svg viewBox="0 0 32 34" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Retrato provisório">' +
+        r(4, 24, 24, 10, "#7a1f1f") + r(4, 24, 24, 2, "#2b2b2b") + r(10, 10, 12, 14, "#7a1f1f") + r(9, 6, 14, 6, "#7a1f1f") + r(8, 12, 2, 8, "#2b2b2b") + r(22, 12, 2, 8, "#2b2b2b") +
+        r(12, 13, 8, 5, "#100c14") + r(13, 15, 2, 1, "#e24a4a") + r(17, 15, 2, 1, "#e24a4a") + r(10, 4, 12, 2, "#2b2b2b") + r(15, 1, 2, 4, "#d8d8d8") + r(12, 2, 2, 2, "#d8d8d8") + r(18, 2, 2, 2, "#d8d8d8") +
+        r(26, 6, 2, 18, "#c8c8c8") + r(25, 4, 4, 3, "#c8c8c8") + r(26, 24, 2, 6, "#5a3a1a") + '</svg>';
+    }
+    var diamond = '<svg viewBox="0 0 16 16"><path d="M8 1l7 7-7 7-7-7z"/><path d="M8 5l3 3-3 3-3-3z"/></svg>';
+    var timer = null, chosen = -1, cur = 0, first = true;
+    function toast(m) { var t = document.getElementById("toast"); t.textContent = m; t.classList.add("on"); clearTimeout(toast.h); toast.h = setTimeout(function () { t.classList.remove("on") }, 2200) }
+    function type() {
+      var el = document.getElementById("txt"), txt = chars[cur].story; clearInterval(timer);
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = txt; return }
+      var n = 0; el.textContent = ""; el.classList.add("caret");
+      timer = setInterval(function () { n += 2; el.textContent = txt.slice(0, n); if (n >= txt.length) { clearInterval(timer); el.textContent = txt; el.classList.remove("caret") } }, 22);
+    }
+    // reduz a fonte até o texto caber na caixa (em cqw, vale para qualquer largura)
+    function fit() {
+      var c = chars[cur], el = document.getElementById("txt"), box = el.parentNode, s = c.fs;
+      el.textContent = c.story; el.style.fontSize = s + "cqw";
+      while (el.offsetHeight > box.clientHeight && s > 1.6) { s -= .1; el.style.fontSize = s + "cqw" }
+      el.textContent = "";
+      var inf = document.querySelector(".info"), f = 2.1; inf.style.fontSize = f + "cqw";
+      while (inf.scrollHeight > inf.clientHeight + 1 && f > 1.2) { f -= .05; inf.style.fontSize = f + "cqw" }
+    }
+    function render() {
+      var c = chars[cur], n = chars.length;
+      document.getElementById("app").innerHTML = '<div class="cell"><p class="lbl"><span>TelaDescriçãoPersonagem · ' + (cur + 1) + ' de ' + n + '</span>' + diamond + '</p>' +
+        '<div class="screen' + (first ? '' : ' in') + '" style="--ac:' + c.ac + ';--fs:' + c.fs + 'cqw;--pbg:' + c.pbg + ';--fit:' + (c.fit || "cover") + ';--py:' + (c.py || "20%") + ';--zoom:' + (c.zoom || 1) + ';--bx:' + (c.bx || "21.5%") + ';--by:' + (c.by || "8.2%") + '"><img class="bg" src="' + BG + '" alt="">' +
+        '<button class="z back" aria-label="Personagem anterior">←</button>' +
+        '<div class="z port">' + (c.img ? '<img src="' + c.img + '" alt="Retrato do personagem">' : placeholder()) + '</div>' +
+        '<p class="z info">' + c.info.map(function (l) { return "<span>" + l + "</span>" }).join("") + '</p>' +
+        '<div class="z txtbox"><p class="txt" id="txt" tabindex="0" title="Clique para exibir o texto completo"></p></div>' +
+        '<button class="z btn" aria-pressed="' + (chosen === cur) + '">' + (chosen === cur ? "Escolhido ✓" : "Escolher") + '</button>' +
+        '<button class="z next">Próximo personagem ›</button>' +
+        '</div></div>';
+      first = false; fit(); type();
+    }
+    function go(d) { cur = (cur + d + chars.length) % chars.length; render() }
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest("button,.txt"); if (!b) return;
+      if (b.classList.contains("btn")) {
+        chosen = chosen === cur ? -1 : cur; b.setAttribute("aria-pressed", chosen === cur); b.textContent = chosen === cur ? "Escolhido ✓" : "Escolher";
+        toast(chosen === cur ? "Personagem escolhido" : "Escolha removida");
+      } else if (b.classList.contains("next")) { go(1) }
+      else if (b.classList.contains("back")) { go(-1) }
+      else if (b.classList.contains("txt")) { clearInterval(timer); b.textContent = chars[cur].story; b.classList.remove("caret") }
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") go(1); if (e.key === "ArrowLeft") go(-1) });
+    document.body.style.setProperty("--bgimg", 'url("' + BG + '")');
+    document.getElementById("fs").onclick = function () {
+      try { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen() }
+      catch (e) { toast("Tela cheia indisponível neste ambiente") }
+    };
+    render();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fit(); type() });
+  </script>
+</body>
+
+</html>
