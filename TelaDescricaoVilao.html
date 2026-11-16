@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Atributos Base</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="TelaDescriçãoVilão.css">
+  </head>
+  <body>
+    <div id="app" style="display: contents"></div>
+    <button
+      class="fs"
+      id="fs"
+      aria-label="Alternar tela cheia"
+      title="Tela cheia"
+    >
+      ⛶
+    </button>
+    <button class="nav p" id="prev" aria-label="Personagem anterior">‹</button>
+    <button class="nav n" id="next" aria-label="Próximo personagem">›</button>
+    <div class="modal" id="modal" role="dialog" aria-modal="true">
+      <div class="card">
+        <h2>Jornada iniciada!</h2>
+        <p id="mt"></p>
+        <p id="mc"></p>
+        <button class="close" id="close">Fechar</button>
+      </div>
+    </div>
+    <script src="TelaDescriçãoVilão.js"></script>
+  </body>
+</html>
