@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Ashen Kingdom - Preparando a Jornada</title>
+    <!-- Fonte temática opcional do Google Fonts -->
+    <link href="https://googleapis.com" rel="stylesheet" />
+    <link rel="stylesheet" href="BoasVindas.css" />
+  </head>
+  <body>
+    <main class="tela-boas-vindas">
+      <!-- Camada de neblina e iluminação do templo -->
+      <div class="sombra"></div>
+      <div class="particulas" id="particulas"></div>
+
+      <section class="conteudo-central">
+        <div class="moldura-medieval">
+          <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
+          <h1 id="textoBoasVindas">
+            SEJA BEM-VINDO,<br /><span class="destaque-nome">PEDRIN!</span>
+          </h1>
+          <p class="subtitulo-reino" id="subtituloReino">
+            Preparando as terras de The Ashen Kingdom para ti...
+          </p>
+
+          <span class="ornamento inferior">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
+
+          <!-- Elementos de carregamento com o mago e a barra -->
+          <div class="area-barra" id="areaBarra">
+            <img
+              src="./assets/mago.png"
+              alt="Professor mago"
+              class="mago"
+              id="mago"
+            />
+            <div class="barra">
+              <div class="progresso" id="progresso"></div>
+            </div>
+          </div>
+
+          <p class="texto-carregamento" id="texto">
+            Os portões do reino estão se abrindo...
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="BoasVindas.js"></script>
+  </body>
+</html>
