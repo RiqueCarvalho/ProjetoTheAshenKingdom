@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>História - Era Meiji</title>
+    <link rel="stylesheet" href="Capitulo.css">
+  </head>
+  <body>
+    <!-- TELA CAPÍTULO I -->
+    <div id="tela1" class="tela-jogo ativa">
+      <div class="caixa-texto">
+        O jogo se passa nos primeiros anos da Era Meiji (fim do século XIX),
+        logo após a queda do Shogunato. O Japão tenta se modernizar, mas o país
+        está em frangalhos. Antigos samurais desempregados (Ronin) causam caos,
+        e uma nova força paramilitar brutal, a "Aliança do Corvo", está
+        escravizando vilas inteiras, queimando plantações e forçando camponeses
+        a trabalhar em minas de ópio e ferro para financiar uma nova guerra
+        civil.
+      </div>
+      <button class="btn-proximo" onclick="mudarTela('tela2')">
+        PRÓXIMO <span class="seta">&gt;</span>
+      </button>
+    </div>
+
+    <!-- TELA CAPÍTULO II -->
+    <div id="tela2" class="tela-jogo">
+      <div class="caixa-texto">
+        O som dos tambores de guerra ecoava pelas montanhas que cercavam a Vila
+        de Kisaragi. O cheiro de fumaça precedia os homens da Aliança do Corvo.
+        Vestidos com uniformes escuros e portando rifles ocidentais modernos
+        misturados a katanas ancestrais, eles cercaram o vilarejo sem dar chance
+        de fuga.
+      </div>
+      <button class="btn-proximo" onclick="mudarTela('tela3')">
+        PRÓXIMO <span class="seta">&gt;</span>
+      </button>
+    </div>
+
+    <!-- TELA CAPÍTULO III -->
+    <div id="tela3" class="tela-jogo">
+      <div class="caixa-texto">
+        Nas sombras da floresta de bambu que margeava a vila destruída, olhos
+        atentos observavam a partida dos soldados. Era Jin, um dos últimos
+        samurais que se recusaram a entregar suas espadas ao novo governo. Agora
+        transformado em Ronin, ele carregava no peito a dor de ver seu país
+        perder a identidade e a dignidade. Ao seu lado, escondidos na escuridão,
+        sobreviventes de vilas vizinhas começavam a se agrupar, movidos pelo
+        desespero e pelo desejo de vingança.
+      </div>
+      <button class="btn-proximo" onclick="iniciarJogo()">
+        PRÓXIMO <span class="seta">&gt;</span>
+      </button>
+    </div>
+
+    <script>
+      function mudarTela(idProximaTela) {
+        // Esconde todas as telas
+        const telas = document.querySelectorAll(".tela-jogo");
+        telas.forEach((tela) => tela.classList.remove("ativa"));
+
+        // Mostra a tela desejada
+        document.getElementById(idProximaTela).classList.add("ativa");
+      }
+
+      function iniciarJogo() {
+        alert("Iniciando a gameplay!");
+        // Aqui você pode redirecionar para a fase do jogo, ex:
+        // window.location.href = "fase1.html";
+      }
+    </script>
+  </body>
+</html>

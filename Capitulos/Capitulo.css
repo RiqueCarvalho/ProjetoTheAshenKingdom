@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  /* Imagem aplicada na tela inteira (plano de fundo externo) */
+  background:
+    linear-gradient(rgba(10, 15, 30, 0.45), rgba(10, 15, 30, 0.65)),
+    url("../Capitulos/image_3014f924.jpg") center/cover no-repeat fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Container principal da tela do jogo (agora transparente) */
+.tela-jogo {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  height: 540px;
+  display: none; /* Oculta todas as telas por padrão */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Exibe apenas a tela que tiver a classe 'ativa' */
+.tela-jogo.ativa {
+  display: flex;
+}
+
+/* Caixa de texto translúcida */
+.caixa-texto {
+  background-color: rgba(210, 215, 225, 0.85);
+  color: #111;
+  padding: 30px 40px;
+  border-radius: 4px;
+  max-width: 750px;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  font-weight: 600;
+  font-style: italic;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+}
+
+/* Botão PRÓXIMO */
+.btn-proximo {
+  background: linear-gradient(180deg, #162436 0%, #0a111a 100%);
+  color: #ffffff;
+  border: 2px solid #2b6cb0;
+  padding: 10px 35px;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(43, 108, 176, 0.5);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.btn-proximo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(66, 153, 225, 0.9);
+}
+
+.seta {
+  color: #4299e1;
+  font-size: 1.2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
