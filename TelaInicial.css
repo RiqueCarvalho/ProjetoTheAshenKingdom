@@ -1,123 +1,327 @@
-    :root {
-        box-sizing: border-box;
-        padding-top: env(safe-area-inset-top, 0px);
-        padding-bottom: env(safe-area-inset-bottom, 0px)
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #050519;
+}
+
+/* =====================================
+   TELA PRINCIPAL
+===================================== */
+
+.tela-inicial {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    position: relative;
+    overflow: hidden;
+
+    background-image: url("./assets/inicio.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/* =====================================
+   MENU PRINCIPAL
+===================================== */
+
+.menu-principal {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* =====================================
+   CONTAINER DOS BOTÕES
+===================================== */
+
+.botoes-menu {
+    position: absolute;
+
+    left: 5.5%;
+    top: 44%;
+
+    width: 32%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+
+    z-index: 2;
+}
+
+/* =====================================
+   BOTÕES
+===================================== */
+
+.botao-menu {
+    width: 100%;
+    height: clamp(65px, 11vh, 105px);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 35px;
+
+    cursor: pointer;
+
+    color: #f6c879;
+
+    font-family: Georgia, serif;
+    font-size: clamp(17px, 2.3vw, 34px);
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        2px 2px 2px #000,
+        0 0 8px #ff8c27;
+
+    background:
+        linear-gradient(90deg,
+            #30120d,
+            #704020,
+            #32140d);
+
+    border: 4px solid #a86a32;
+
+    outline: 2px solid #3c1b0e;
+    outline-offset: -9px;
+
+    box-shadow:
+        0 0 0 3px #25100b,
+        inset 0 0 15px #000,
+        0 0 15px rgba(255, 120, 20, 0.4);
+
+    clip-path: polygon(7% 0,
+            93% 0,
+            100% 20%,
+            96% 80%,
+            93% 100%,
+            7% 100%,
+            4% 80%,
+            0 20%);
+
+    transition: 0.25s;
+}
+
+/* ORNAMENTOS LATERAIS */
+
+.botao-menu::before,
+.botao-menu::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #e6a44b;
+
+    font-size: 23px;
+
+    text-shadow: 0 0 8px #ff9b35;
+}
+
+.botao-menu::before {
+    left: 8%;
+}
+
+.botao-menu::after {
+    right: 8%;
+}
+
+/* TEXTO */
+
+.botao-menu span {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+/* =====================================
+   EFEITO AO PASSAR O MOUSE
+===================================== */
+
+.botao-menu:hover {
+    transform: scale(1.04);
+
+    color: #fff0bd;
+
+    background:
+        linear-gradient(90deg,
+            #592317,
+            #a15a27,
+            #592317);
+
+    box-shadow:
+        0 0 15px #ff8c32,
+        inset 0 0 20px #f3a04a;
+}
+
+.botao-menu:active {
+    transform: scale(0.97);
+}
+
+/* =====================================
+   MODAL CONFIGURAÇÕES
+===================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 10, 0.85);
+
+    z-index: 10;
+}
+
+.modal.aberto {
+    display: flex;
+}
+
+.painel-configuracoes {
+    width: min(430px, 90%);
+
+    padding: 30px;
+
+    color: #f6d59a;
+
+    background:
+        linear-gradient(145deg,
+            #291526,
+            #080d27);
+
+    border: 3px solid #a86a32;
+
+    box-shadow:
+        0 0 25px rgba(255, 130, 40, 0.4),
+        inset 0 0 20px #000;
+}
+
+.painel-configuracoes h1 {
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    font-family: Georgia, serif;
+    font-size: 25px;
+
+    color: #f5c16e;
+
+    text-shadow: 0 0 8px #a54b20;
+}
+
+.opcao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 20px 0;
+
+    font-size: 18px;
+}
+
+.opcao select {
+    padding: 9px;
+    min-width: 140px;
+
+    color: #f5d59a;
+    background: #171323;
+
+    border: 1px solid #a86a32;
+
+    font-family: Georgia, serif;
+}
+
+.botoes-configuracao {
+    display: flex;
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.botoes-configuracao button {
+    flex: 1;
+    padding: 12px;
+
+    color: #ffe0a5;
+    background: #542b24;
+
+    border: 2px solid #bd8748;
+
+    cursor: pointer;
+
+    font-weight: bold;
+    font-family: Georgia, serif;
+
+    transition: 0.2s;
+}
+
+.botoes-configuracao button:hover {
+    background: #87472b;
+    box-shadow: 0 0 12px #ff9a39;
+}
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+@media (max-width: 700px) {
+
+    .botoes-menu {
+        left: 4%;
+        width: 43%;
+        top: 43%;
+        gap: 12px;
     }
 
-    html {
-        scroll-padding-top: env(safe-area-inset-top, 0px)
+    .botao-menu {
+        height: 65px;
+        font-size: 14px;
+        letter-spacing: 0;
+        padding: 8px 25px;
     }
 
-    * {
-        box-sizing: border-box
-    }
+}
 
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        background: #000;
-        overflow: hidden
-    }
+/* LOGO DO JOGO */
 
-    body {
-        display: flex;
-        align-items: center;
-        justify-content: center
-    }
+.container-logo {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45%;
+    height: 27%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
 
-    #stage {
-        position: relative;
-        width: min(100vw, calc(100vh * 1.74));
-        aspect-ratio: 883/508;
-        container-type: inline-size;
-        transition: filter .2s;
-        overflow: hidden
-    }
-
-    .screen {
-        position: absolute;
-        inset: 0;
-        display: none;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        image-rendering: auto
-    }
-
-    .screen.on {
-        display: block
-    }
-
-    button {
-        font-family: Almendra, Georgia, serif;
-        cursor: pointer;
-        border: 0;
-        padding: 0
-    }
-
-    .hs {
-        position: absolute;
-        background: transparent;
-        border-radius: 6px;
-        transition: box-shadow .15s, background .15s
-    }
-
-    .hs:hover,
-    .hs:focus-visible {
-        background: rgba(255, 200, 110, .14);
-        box-shadow: 0 0 14px 2px rgba(255, 170, 60, .55);
-        outline: none
-    }
-
-    .hs:active {
-        background: rgba(255, 200, 110, .28)
-    }
-
-    .hs.round {
-        border-radius: 50%
-    }
-
-    .pill {
-        position: absolute;
-        background: rgb(140, 136, 141);
-        color: #fff;
-        font-weight: 700;
-        font-size: 2.5cqw;
-        border-radius: 999px;
-        text-shadow: 0 1px 2px #000a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: filter .15s
-    }
-
-    .pill.dk {
-        background: rgb(114, 113, 119)
-    }
-
-    .pill:hover,
-    .pill:focus-visible {
-        filter: brightness(1.25);
-        outline: 2px solid #d9a441
-    }
-
-    #toast {
-        position: absolute;
-        left: 50%;
-        bottom: 4%;
-        transform: translateX(-50%);
-        background: #000c;
-        color: #f1e3c8;
-        border: 1px solid #b8872f;
-        padding: .6cqw 2cqw;
-        border-radius: 6px;
-        font: 700 2cqw Almendra, serif;
-        opacity: 0;
-        transition: opacity .25s;
-        pointer-events: none;
-        white-space: nowrap
-    }
-
-    #toast.on {
-        opacity: 1
-    }
+.logo-jogo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

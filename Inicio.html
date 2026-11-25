@@ -1,61 +1,59 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Ashen Kingdom</title>
-    <link rel="stylesheet" href="Inicio.css" />
-  </head>
 
-  <body>
-    <main class="tela-press-start" id="telaInicial">
-      <div class="sombra"></div>
-      <div class="particulas" id="particulas"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Ashen Kingdom</title>
+  <link rel="stylesheet" href="Inicio.css" />
+  <link rel="icon" type="image/png" href="../assets/favicon_samurai.png">
+</head>
 
-      <!-- Conteúdo inicial: Pressione qualquer tecla -->
-      <section class="conteudo-central" id="secaoPressStart">
-        <div class="titulo-jogo">
-          <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
-          <h1>THE ASHEN<br /><span>KINGDOM</span></h1>
-          <span class="ornamento inferior">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
-        </div>
+<body>
+  <main class="tela-press-start" id="telaInicial">
+    <div class="sombra"></div>
+    <div class="particulas" id="particulas"></div>
 
-        <div class="area-acao">
-          <p class="texto-piscante" id="textoStart">
-            Pressione qualquer tecla para iniciar
-          </p>
-          <span class="dica-mobile">(ou clique na tela)</span>
-        </div>
-      </section>
+    <!-- Conteúdo inicial: Pressione qualquer tecla -->
+    <section class="conteudo-central" id="secaoPressStart">
+      <div class="titulo-jogo">
+        <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
+        <h1>THE ASHEN<br /><span>KINGDOM</span></h1>
+        <span class="ornamento inferior">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
+      </div>
 
-      <!-- Nova seção de cadastro de Nome (inicialmente oculta) -->
-      <section class="conteudo-central oculto" id="secaoNome">
-        <div class="titulo-jogo">
-          <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
-          <h1>IDENTIFIQUE-SE,<br /><span>GUERREIRO</span></h1>
-          <span class="ornamento inferior">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
-        </div>
+      <div class="area-acao">
+        <p class="texto-piscante" id="textoStart">
+          Pressione qualquer tecla para iniciar
+        </p>
+        <span class="dica-mobile">(ou clique na tela)</span>
+      </div>
+    </section>
 
-        <div class="area-formulario">
-          <p class="subtitulo-nome">Como o reino deve chamá-lo?</p>
-          <input
-            type="text"
-            id="inputNome"
-            placeholder="Digite seu nome ou apelido..."
-            maxlength="20"
-            autocomplete="off"
-          />
-          <button class="botao-entrar" id="btnConfirmarNome">
-            Entrar no Templo
-          </button>
-        </div>
-      </section>
+    <!-- Nova seção de cadastro de Nome (inicialmente oculta) -->
+    <section class="conteudo-central oculto" id="secaoNome">
+      <div class="titulo-jogo">
+        <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
+        <h1>IDENTIFIQUE-SE,<br /><span>GUERREIRO</span></h1>
+        <span class="ornamento inferior">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
+      </div>
 
-      <footer class="rodape">
-        <p>© 2026 The Ashen Kingdom • Versão 1.0</p>
-      </footer>
-    </main>
+      <div class="area-formulario">
+        <p class="subtitulo-nome">Como o reino deve chamá-lo?</p>
+        <input type="text" id="inputNome" placeholder="Digite seu nome ou apelido..." maxlength="20"
+          autocomplete="off" />
+        <button class="botao-entrar" id="btnConfirmarNome">
+          Entrar no Templo
+        </button>
+      </div>
+    </section>
 
-    <script src="Inicio.js"></script>
-  </body>
+    <footer class="rodape">
+      <p>© 2026 The Ashen Kingdom • Versão 1.0</p>
+    </footer>
+  </main>
+
+  <script src="Inicio.js"></script>
+</body>
+
 </html>

@@ -1,0 +1,509 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #17100b;
+    font-family: "Almendra", serif;
+}
+
+
+/* =========================================
+   TELA PRINCIPAL
+========================================= */
+
+.tela-personagem {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image:
+        linear-gradient(rgba(20, 10, 5, 0.15),
+            rgba(20, 10, 5, 0.15)),
+        url("./Imagens/fundo-tela.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* =========================================
+   BOTÃO VOLTAR
+========================================= */
+
+.botao-voltar {
+    position: absolute;
+
+    top: 3%;
+    left: 3%;
+
+    width: 58px;
+    height: 58px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #17678d;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 0 8px rgba(0, 0, 0, 0.6),
+        inset 0 0 5px rgba(255, 255, 255, 0.3);
+
+    transition: transform 0.2s, background 0.2s;
+}
+
+.botao-voltar img {
+    width: 80%;
+    height: 80%;
+
+    object-fit: contain;
+}
+
+.botao-voltar:hover {
+    transform: scale(1.1);
+    background: #2584ad;
+}
+
+
+/* =========================================
+   MOLDURA PRINCIPAL
+========================================= */
+
+.moldura-principal {
+    position: relative;
+
+    width: 96%;
+    height: 96%;
+
+    display: grid;
+
+    grid-template-columns: 39% 61%;
+
+    padding: 1.5%;
+
+    gap: 1.5%;
+
+    background:
+        linear-gradient(135deg,
+            #57351b,
+            #a8793e,
+            #4d2c16,
+            #bd8b4d,
+            #583319);
+
+    border: 5px solid #4a2c17;
+
+    box-shadow:
+        0 0 0 3px #c18b4b,
+        0 0 20px rgba(0, 0, 0, 0.9);
+
+    border-radius: 12px;
+}
+
+
+/* =========================================
+   PAINEL ESQUERDO
+========================================= */
+
+.painel-esquerdo {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 2%;
+
+    background-image:
+        url("./Imagens/pergaminho.png");
+
+    background-color: #d8b77c;
+
+    background-size: cover;
+    background-position: center;
+
+    border: 5px solid #71431e;
+    border-radius: 8px;
+
+    box-shadow:
+        inset 0 0 15px rgba(75, 35, 10, 0.6),
+        0 0 5px black;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   RETRATO
+========================================= */
+
+.moldura-retrato {
+    width: 100%;
+    height: 57%;
+
+    padding: 5px;
+
+    background:
+        linear-gradient(135deg,
+            #4a2a14,
+            #b98543,
+            #5d371c,
+            #d1a060,
+            #4a2913);
+
+    border: 4px solid #68401f;
+
+    box-shadow:
+        0 0 0 2px #d4a76b,
+        0 0 10px rgba(0, 0, 0, 0.7);
+
+    border-radius: 5px;
+}
+
+.retrato {
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(circle,
+            #b99b72,
+            #80603d,
+            #4c321d);
+
+    border: 3px solid #3f2815;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.imagem-personagem {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.6));
+
+    transition: transform 0.3s;
+}
+
+.imagem-personagem:hover {
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   INFORMAÇÕES
+========================================= */
+
+.informacoes-personagem {
+    width: 100%;
+
+    margin-top: 3%;
+
+    color: #271507;
+
+    font-family: "Almendra", serif;
+
+    font-size: clamp(12px, 1.5vw, 20px);
+
+    line-height: 1.12;
+
+    text-shadow:
+        0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.informacoes-personagem h2 {
+    font-size: clamp(13px, 1.6vw, 21px);
+
+    font-weight: bold;
+
+    margin-bottom: 3%;
+}
+
+.informacoes-personagem p {
+    margin-bottom: 1%;
+}
+
+.informacoes-personagem strong {
+    font-weight: bold;
+}
+
+
+/* =========================================
+   BOTÃO ESCOLHER
+========================================= */
+
+.botao-escolher {
+    position: absolute;
+
+    bottom: 3%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 8px 22px;
+
+    background: #6509c4;
+
+    color: white;
+
+    font-family: "Almendra", serif;
+
+    font-size: clamp(15px, 1.8vw, 22px);
+
+    font-weight: bold;
+
+    border: 2px solid #390078;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 5px rgba(0, 0, 0, 0.5);
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        box-shadow 0.2s;
+}
+
+.botao-escolher:hover {
+    background: #8a26e6;
+
+    transform: translateX(-50%) scale(1.08);
+
+    box-shadow:
+        0 0 12px rgba(156, 68, 255, 0.7);
+}
+
+.botao-escolher:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+
+/* =========================================
+   PAINEL DIREITO
+========================================= */
+
+.painel-direito {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 1%;
+}
+
+
+/* =========================================
+   PERGAMINHO
+========================================= */
+
+.pergaminho {
+    width: 100%;
+    height: 100%;
+
+    padding: 5%;
+
+    background-image:
+        url("./Imagens/pergaminho.png");
+
+    background-color: #d9bd88;
+
+    background-size: cover;
+    background-position: center;
+
+    border: 6px solid #6d451f;
+
+    border-radius: 8px;
+
+    box-shadow:
+        inset 0 0 20px rgba(75, 35, 10, 0.5),
+        0 0 8px black;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   HISTÓRIA
+========================================= */
+
+.texto-historia {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.texto-historia p {
+    color: #160c05;
+
+    font-family: "Almendra", serif;
+
+    font-weight: bold;
+
+    font-size: clamp(20px, 3.8vw, 48px);
+
+    line-height: 1.12;
+
+    text-align: left;
+
+    overflow-wrap: break-word;
+
+    text-shadow:
+        0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .moldura-principal {
+        grid-template-columns: 43% 57%;
+
+        width: 97%;
+        height: 94%;
+
+        gap: 1%;
+    }
+
+    .painel-esquerdo {
+        padding: 3%;
+    }
+
+    .moldura-retrato {
+        height: 48%;
+    }
+
+    .informacoes-personagem {
+        font-size: 12px;
+    }
+
+    .informacoes-personagem h2 {
+        font-size: 13px;
+    }
+
+    .pergaminho {
+        padding: 4%;
+    }
+
+    .texto-historia p {
+        font-size: clamp(17px, 4vw, 30px);
+    }
+
+    .botao-voltar {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+
+/* =========================================
+   TELAS MUITO PEQUENAS
+========================================= */
+
+@media (max-width: 480px) {
+
+    .moldura-principal {
+        grid-template-columns: 44% 56%;
+
+        padding: 1%;
+    }
+
+    .moldura-retrato {
+        height: 42%;
+    }
+
+    .informacoes-personagem {
+        font-size: 10px;
+        line-height: 1.1;
+    }
+
+    .informacoes-personagem h2 {
+        font-size: 11px;
+    }
+
+    .botao-escolher {
+        padding: 5px 12px;
+
+        font-size: 13px;
+    }
+
+    .texto-historia p {
+        font-size: clamp(15px, 4vw, 23px);
+    }
+}
+
+
+/* =========================================
+   ANIMAÇÃO DE ENTRADA
+========================================= */
+
+.moldura-principal {
+    animation: aparecer 0.8s ease;
+}
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}

@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background: #050519;
+}
+
+/* =====================================
+   MENU PRINCIPAL E PLANO DE FUNDO
+===================================== */
+
+.menu-principal {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    overflow: hidden;
+
+    background-image: url("./assets/inicio.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/* =====================================
+   LOGO DO JOGO
+===================================== */
+
+.container-logo {
+    position: absolute;
+
+    top: 4%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 45%;
+    height: 27%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2;
+}
+
+.logo-jogo {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    filter: drop-shadow(0 0 12px rgba(255, 170, 60, 0.35));
+}
+
+/* =====================================
+   CONTAINER DOS BOTÕES
+===================================== */
+
+.botoes-menu {
+    position: absolute;
+
+    left: 5.5%;
+    top: 44%;
+
+    width: 32%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+
+    z-index: 3;
+}
+
+/* =====================================
+   BOTÕES
+===================================== */
+
+.botao-menu {
+    width: 100%;
+    height: clamp(85px, 15vh, 125px);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 35px;
+
+    cursor: pointer;
+
+    color: #f6c879;
+
+    font-family: Georgia, serif;
+    font-size: clamp(15px, 1.8vw, 27px);
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        2px 2px 2px #000,
+        0 0 8px #ff8c27;
+
+    background:
+        linear-gradient(90deg,
+            #30120d,
+            #704020,
+            #32140d);
+
+    border: 4px solid #a86a32;
+
+    outline: 2px solid #3c1b0e;
+    outline-offset: -9px;
+
+    box-shadow:
+        0 0 0 3px #25100b,
+        inset 0 0 15px #000,
+        0 0 15px rgba(255, 120, 20, 0.4);
+
+    clip-path: polygon(7% 0,
+            93% 0,
+            100% 20%,
+            96% 80%,
+            93% 100%,
+            7% 100%,
+            4% 80%,
+            0 20%);
+
+    transition: 0.25s;
+}
+
+/* ORNAMENTOS LATERAIS */
+
+.botao-menu::before,
+.botao-menu::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: #e6a44b;
+
+    font-size: 25px;
+
+    text-shadow: 0 0 8px #ff9b35;
+}
+
+.botao-menu::before {
+    left: 7%;
+}
+
+.botao-menu::after {
+    right: 7%;
+}
+
+.botao-menu span {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+/* HOVER */
+
+.botao-menu:hover {
+    transform: scale(1.04);
+
+    color: #fff0bd;
+
+    background:
+        linear-gradient(90deg,
+            #592317,
+            #a15a27,
+            #592317);
+
+    box-shadow:
+        0 0 15px #ff8c32,
+        inset 0 0 20px #f3a04a;
+}
+
+.botao-menu:active {
+    transform: scale(0.97);
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+
+    .container-logo {
+        top: 3%;
+        width: 65%;
+        height: 22%;
+    }
+
+    .botoes-menu {
+        left: 4%;
+        width: 43%;
+        top: 43%;
+        gap: 15px;
+    }
+
+    .botao-menu {
+        height: 75px;
+        font-size: 13px;
+        letter-spacing: 0;
+        padding: 8px 25px;
+    }
+}
+
+.botao-voltar {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    width: 65px;
+    height: 65px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.botao-voltar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.botao-voltar:hover img {
+    transform: scale(1.1);
+}
