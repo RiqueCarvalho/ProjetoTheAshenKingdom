@@ -195,30 +195,9 @@ body {
     transform: scale(0.97);
 }
 
-/* RESPONSIVIDADE */
-
-@media (max-width: 700px) {
-
-    .container-logo {
-        top: 3%;
-        width: 65%;
-        height: 22%;
-    }
-
-    .botoes-menu {
-        left: 4%;
-        width: 43%;
-        top: 43%;
-        gap: 15px;
-    }
-
-    .botao-menu {
-        height: 75px;
-        font-size: 13px;
-        letter-spacing: 0;
-        padding: 8px 25px;
-    }
-}
+/* =====================================
+   BOTÃO VOLTAR
+===================================== */
 
 .botao-voltar {
     position: absolute;
@@ -242,4 +221,196 @@ body {
 
 .botao-voltar:hover img {
     transform: scale(1.1);
+}
+
+/* =====================================
+   MODAL DA PEGADINHA DO MERCADO
+===================================== */
+
+.modal-mercado {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.88);
+}
+
+.modal-mercado[hidden] {
+    display: none;
+}
+
+.modal-mercado-conteudo {
+    width: min(520px, 95%);
+
+    padding: 35px 30px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(145deg, #30170e, #100b09);
+
+    border: 4px solid #a86a32;
+
+    outline: 2px solid #e6a44b;
+    outline-offset: -10px;
+
+    box-shadow:
+        0 0 25px rgba(255, 140, 50, 0.4),
+        inset 0 0 20px #000;
+
+    animation: aparecerMercado 0.4s ease;
+}
+
+.modal-mercado-conteudo h2 {
+    color: #f6c879;
+
+    font-family: Georgia, serif;
+    font-size: 24px;
+
+    margin-bottom: 15px;
+
+    text-shadow: 0 0 10px #ff8c27;
+}
+
+/* MICROFONE */
+
+.icone-narrador {
+    font-size: 42px;
+    margin-bottom: 18px;
+
+    animation: narradorPulsando 1.2s infinite alternate;
+}
+
+.modal-mercado-conteudo p {
+    color: #f5e8ca;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+.modal-mercado-conteudo .frase-pix {
+    color: #f6c879;
+    font-weight: bold;
+}
+
+/* BOTÃO OK */
+
+#btnOkMercado {
+    width: 150px;
+
+    padding: 13px;
+
+    margin-top: 10px;
+
+    color: #f6c879;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: linear-gradient(90deg, #30120d, #704020, #32140d);
+
+    border: 3px solid #a86a32;
+
+    box-shadow: 0 0 12px rgba(255, 120, 20, 0.4);
+
+    transition: 0.25s;
+}
+
+#btnOkMercado:hover {
+    transform: scale(1.08);
+
+    color: #fff0bd;
+
+    background: linear-gradient(90deg, #592317, #a15a27, #592317);
+
+    box-shadow: 0 0 15px #ff8c32;
+}
+
+/* =====================================
+   ANIMAÇÕES
+===================================== */
+
+@keyframes aparecerMercado {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes narradorPulsando {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+}
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+@media (max-width: 700px) {
+
+    .container-logo {
+        top: 3%;
+        width: 65%;
+        height: 22%;
+    }
+
+    .botoes-menu {
+        left: 4%;
+        width: 43%;
+        top: 43%;
+        gap: 15px;
+    }
+
+    .botao-menu {
+        height: 75px;
+        font-size: 13px;
+        letter-spacing: 0;
+        padding: 8px 25px;
+    }
+
+    .botao-voltar {
+        top: 15px;
+        left: 15px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .modal-mercado-conteudo {
+        padding: 30px 22px;
+    }
+
+    .modal-mercado-conteudo h2 {
+        font-size: 20px;
+    }
+
+    .modal-mercado-conteudo p {
+        font-size: 15px;
+    }
 }
