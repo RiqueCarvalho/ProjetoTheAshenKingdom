@@ -1,0 +1,491 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  background: #17100b;
+  font-family: "Almendra", serif;
+}
+
+/* =========================================
+   TELA PRINCIPAL
+========================================= */
+
+.tela-personagem {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image:
+    linear-gradient(rgba(15, 5, 8, 0.25), rgba(15, 5, 8, 0.35)),
+    url("./Imagens/fundo-hiroshi.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* =========================================
+   BOTÃO VOLTAR
+========================================= */
+
+.botao-voltar {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+
+  width: 58px;
+  height: 58px;
+
+  border: none;
+  border-radius: 50%;
+  background: #761c24;
+
+  cursor: pointer;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.6),
+    inset 0 0 5px rgba(255, 255, 255, 0.3);
+
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.botao-voltar img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.botao-voltar:hover {
+  transform: scale(1.1);
+  background: #a52b35;
+}
+
+/* =========================================
+   MOLDURA PRINCIPAL
+========================================= */
+
+.moldura-principal {
+  position: relative;
+
+  width: 96%;
+  height: 96%;
+
+  display: grid;
+  grid-template-columns: 39% 61%;
+
+  padding: 1.5%;
+  gap: 1.5%;
+
+  background: linear-gradient(
+    135deg,
+    #24191a,
+    #8d3034,
+    #281719,
+    #a34b43,
+    #251516
+  );
+
+  border: 5px solid #351719;
+
+  box-shadow:
+    0 0 0 3px #a34b43,
+    0 0 20px rgba(0, 0, 0, 0.9);
+
+  border-radius: 12px;
+
+  animation: aparecer 0.8s ease;
+}
+
+/* =========================================
+   PAINEL ESQUERDO
+========================================= */
+
+.painel-esquerdo {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 2%;
+
+  background-image: url("./Imagens/pergaminho.png");
+  background-color: #d8b77c;
+
+  background-size: cover;
+  background-position: center;
+
+  border: 5px solid #71431e;
+  border-radius: 8px;
+
+  box-shadow:
+    inset 0 0 15px rgba(75, 35, 10, 0.6),
+    0 0 5px black;
+
+  overflow: hidden;
+}
+
+/* =========================================
+   RETRATO
+========================================= */
+
+.moldura-retrato {
+  width: 100%;
+  height: 53%;
+  flex-shrink: 0;
+
+  padding: 5px;
+
+  background: linear-gradient(
+    135deg,
+    #241719,
+    #9d343b,
+    #351719,
+    #bd6559,
+    #281416
+  );
+
+  border: 4px solid #68401f;
+
+  box-shadow:
+    0 0 0 2px #d4a76b,
+    0 0 10px rgba(0, 0, 0, 0.7);
+
+  border-radius: 5px;
+}
+
+.retrato {
+  width: 100%;
+  height: 100%;
+
+  background: radial-gradient(circle, #8b7770, #55413d, #241719);
+
+  border: 3px solid #3f2815;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.imagem-personagem {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.6));
+
+  transition: transform 0.3s;
+}
+
+.imagem-personagem:hover {
+  transform: scale(1.05);
+}
+
+/* =========================================
+   INFORMAÇÕES
+========================================= */
+
+.informacoes-personagem {
+  width: 100%;
+  margin-top: 2.5%;
+
+  color: #271507;
+
+  font-family: "Almendra", serif;
+  font-size: clamp(11px, 1.15vw, 16px);
+
+  line-height: 1.15;
+
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.4);
+
+  overflow-y: auto;
+  padding-bottom: 55px;
+}
+
+.informacoes-personagem h2 {
+  font-size: clamp(13px, 1.35vw, 19px);
+  font-weight: bold;
+  margin-bottom: 3%;
+}
+
+.informacoes-personagem p {
+  margin-bottom: 2%;
+}
+
+.informacoes-personagem strong {
+  font-weight: bold;
+}
+
+/* =========================================
+   BOTÃO ESCOLHER
+========================================= */
+
+.botao-escolher {
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  padding: 8px 22px;
+
+  background: #761c24;
+  color: white;
+
+  font-family: "Almendra", serif;
+  font-size: clamp(14px, 1.5vw, 19px);
+  font-weight: bold;
+
+  border: 2px solid #421015;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.botao-escolher:hover {
+  background: #a52b35;
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 0 12px rgba(190, 45, 55, 0.7);
+}
+
+.botao-escolher:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* =========================================
+   PAINEL DIREITO
+========================================= */
+
+.painel-direito {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1%;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* =========================================
+   PERGAMINHO
+========================================= */
+
+.pergaminho {
+  width: 100%;
+  height: 100%;
+
+  padding: 4%;
+
+  background-image: url("./Imagens/pergaminho.png");
+  background-color: #d9bd88;
+
+  background-size: cover;
+  background-position: center;
+
+  border: 6px solid #6d451f;
+  border-radius: 8px;
+
+  box-shadow:
+    inset 0 0 20px rgba(75, 35, 10, 0.5),
+    0 0 8px black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  min-width: 0;
+  min-height: 0;
+}
+
+/* =========================================
+   HISTÓRIA
+========================================= */
+
+.texto-historia {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 10px 15px;
+}
+
+.texto-historia p {
+  color: #160c05;
+
+  font-family: "Almendra", serif;
+  font-weight: bold;
+
+  font-size: clamp(16px, 1.8vw, 25px);
+
+  line-height: 1.35;
+  text-align: left;
+
+  overflow-wrap: break-word;
+  word-break: normal;
+
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+/* BARRA DE ROLAGEM */
+
+.texto-historia::-webkit-scrollbar,
+.informacoes-personagem::-webkit-scrollbar {
+  width: 6px;
+}
+
+.texto-historia::-webkit-scrollbar-thumb,
+.informacoes-personagem::-webkit-scrollbar-thumb {
+  background: #71431e;
+  border-radius: 10px;
+}
+
+.texto-historia::-webkit-scrollbar-track,
+.informacoes-personagem::-webkit-scrollbar-track {
+  background: rgba(75, 35, 10, 0.15);
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 700px) {
+  .moldura-principal {
+    grid-template-columns: 43% 57%;
+    width: 97%;
+    height: 94%;
+    gap: 1%;
+  }
+
+  .painel-esquerdo {
+    padding: 3%;
+  }
+
+  .moldura-retrato {
+    height: 45%;
+  }
+
+  .informacoes-personagem {
+    font-size: 11px;
+  }
+
+  .informacoes-personagem h2 {
+    font-size: 13px;
+  }
+
+  .pergaminho {
+    padding: 3%;
+  }
+
+  .texto-historia {
+    padding: 8px;
+  }
+
+  .texto-historia p {
+    font-size: clamp(14px, 2.2vw, 19px);
+    line-height: 1.3;
+  }
+
+  .botao-voltar {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* =========================================
+   TELAS MUITO PEQUENAS
+========================================= */
+
+@media (max-width: 480px) {
+  .moldura-principal {
+    grid-template-columns: 44% 56%;
+    padding: 1%;
+  }
+
+  .moldura-retrato {
+    height: 40%;
+  }
+
+  .informacoes-personagem {
+    font-size: 9px;
+    line-height: 1.15;
+  }
+
+  .informacoes-personagem h2 {
+    font-size: 10px;
+  }
+
+  .botao-escolher {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+
+  .texto-historia p {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .texto-historia {
+    padding: 5px;
+  }
+}
+
+/* =========================================
+   ANIMAÇÃO
+========================================= */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
