@@ -1,3 +1,7 @@
+/* ========================================= */
+/* CONFIGURAÇÕES GERAIS */
+/* ========================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,87 +9,397 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ========================================= */
+/* FUNDO DA TELA */
+/* ========================================= */
+
 body {
-  /* Imagem aplicada na tela inteira (plano de fundo externo) */
   background:
     linear-gradient(rgba(10, 15, 30, 0.45), rgba(10, 15, 30, 0.65)),
     url("../Capitulos/image_3014f924.jpg") center/cover no-repeat fixed;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 100vh;
   overflow: hidden;
 }
 
-/* Container principal da tela do jogo (agora transparente) */
+/* ========================================= */
+/* CONTAINER PRINCIPAL */
+/* ========================================= */
+
 .tela-jogo {
   position: relative;
+
   width: 100%;
   max-width: 960px;
+
   height: 540px;
-  display: none; /* Oculta todas as telas por padrão */
+
+  display: none;
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   padding: 40px;
+
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Exibe apenas a tela que tiver a classe 'ativa' */
+/* Exibe somente a tela ativa */
+
 .tela-jogo.ativa {
   display: flex;
 }
 
-/* Caixa de texto translúcida */
+/* ========================================= */
+/* TÍTULO DO CAPÍTULO */
+/* ========================================= */
+
+.titulo-capitulo {
+  color: #ffffff;
+
+  font-size: 28px;
+  font-weight: bold;
+
+  letter-spacing: 5px;
+
+  text-align: center;
+
+  margin-bottom: 25px;
+
+  text-shadow:
+    0 0 8px rgba(66, 153, 225, 0.8),
+    0 3px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* ========================================= */
+/* CAIXA DE TEXTO */
+/* ========================================= */
+
 .caixa-texto {
   background-color: rgba(210, 215, 225, 0.85);
+
   color: #111;
+
   padding: 30px 40px;
+
   border-radius: 4px;
+
   max-width: 750px;
+  width: 100%;
+
   font-size: 1.15rem;
+
   line-height: 1.6;
+
   font-weight: 600;
+
   font-style: italic;
+
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+
   margin-bottom: 20px;
 }
 
-/* Botão PRÓXIMO */
+/* ========================================= */
+/* CONTROLES DA NARRAÇÃO */
+/* ========================================= */
+
+.controles-narracao {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+/* Botões de áudio */
+
+.btn-audio {
+  background: linear-gradient(180deg, #162436 0%, #0a111a 100%);
+
+  color: #ffffff;
+
+  border: 2px solid #2b6cb0;
+
+  padding: 10px 22px;
+
+  font-size: 0.9rem;
+
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border-radius: 4px;
+
+  box-shadow: 0 0 10px rgba(43, 108, 176, 0.5);
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+/* Hover dos botões de áudio */
+
+.btn-audio:hover {
+  transform: scale(1.05);
+
+  box-shadow: 0 0 18px rgba(66, 153, 225, 0.9);
+
+  background: linear-gradient(180deg, #23466c 0%, #102338 100%);
+}
+
+/* ========================================= */
+/* BOTÃO PRÓXIMO */
+/* ========================================= */
+
 .btn-proximo {
+  background: linear-gradient(180deg, #162436 0%, #0a111a 100%);
+
+  color: #ffffff;
+
+  border: 2px solid #2b6cb0;
+
+  padding: 10px 35px;
+
+  font-size: 1rem;
+
+  font-weight: bold;
+
+  letter-spacing: 1.5px;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border-radius: 4px;
+
+  box-shadow: 0 0 10px rgba(43, 108, 176, 0.5);
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+/* Hover do botão próximo */
+
+.btn-proximo:hover {
+  transform: scale(1.05);
+
+  box-shadow: 0 0 18px rgba(66, 153, 225, 0.9);
+}
+
+/* ========================================= */
+/* SETA */
+/* ========================================= */
+
+.seta {
+  color: #4299e1;
+
+  font-size: 1.2rem;
+}
+
+/* ========================================= */
+/* STATUS DA NARRAÇÃO */
+/* ========================================= */
+
+#statusNarracao {
+  position: fixed;
+
+  bottom: 15px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #d6e5f5;
+
+  font-size: 13px;
+
+  letter-spacing: 1px;
+
+  background: rgba(10, 15, 30, 0.85);
+
+  padding: 10px 18px;
+
+  border: 1px solid rgba(66, 153, 225, 0.5);
+
+  border-radius: 20px;
+
+  z-index: 1000;
+
+  text-align: center;
+
+  white-space: nowrap;
+
+  box-shadow: 0 0 10px rgba(43, 108, 176, 0.3);
+}
+
+/* ========================================= */
+/* ANIMAÇÃO DE ENTRADA */
+/* ========================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================= */
+/* RESPONSIVIDADE */
+/* ========================================= */
+
+@media (max-width: 768px) {
+  .tela-jogo {
+    padding: 20px;
+
+    height: auto;
+
+    max-height: 100vh;
+  }
+
+  .titulo-capitulo {
+    font-size: 23px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 15px;
+  }
+
+  .caixa-texto {
+    padding: 20px;
+
+    font-size: 1rem;
+
+    line-height: 1.5;
+  }
+
+  .controles-narracao {
+    gap: 10px;
+  }
+
+  .btn-audio {
+    padding: 10px 15px;
+
+    font-size: 0.8rem;
+  }
+
+  .btn-proximo {
+    padding: 10px 25px;
+
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tela-jogo {
+    padding: 15px;
+  }
+
+  .titulo-capitulo {
+    font-size: 20px;
+  }
+
+  .caixa-texto {
+    padding: 18px;
+
+    font-size: 0.9rem;
+  }
+
+  .controles-narracao {
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .btn-audio {
+    width: 80%;
+
+    justify-content: center;
+  }
+
+  .btn-proximo {
+    justify-content: center;
+  }
+
+  #statusNarracao {
+    font-size: 11px;
+
+    max-width: 90%;
+
+    white-space: normal;
+  }
+}
+
+/* ========================================= */
+/* BOTÃO INICIAR NARRAÇÃO */
+/* ========================================= */
+
+.btn-iniciar-narracao,
+.btn-iniciar-jogo {
   background: linear-gradient(180deg, #162436 0%, #0a111a 100%);
   color: #ffffff;
   border: 2px solid #2b6cb0;
-  padding: 10px 35px;
+  padding: 12px 30px;
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 1.5px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(43, 108, 176, 0.5);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: 0.2s;
 }
 
-.btn-proximo:hover {
+.btn-iniciar-narracao:hover,
+.btn-iniciar-jogo:hover:not(:disabled) {
   transform: scale(1.05);
   box-shadow: 0 0 18px rgba(66, 153, 225, 0.9);
 }
 
-.seta {
-  color: #4299e1;
-  font-size: 1.2rem;
+/* ========================================= */
+/* BOTÃO PRÓXIMO BLOQUEADO */
+/* ========================================= */
+
+.btn-proximo:disabled,
+.btn-iniciar-jogo:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.btn-proximo:disabled:hover {
+  transform: none;
+  box-shadow: 0 0 10px rgba(43, 108, 176, 0.5);
 }

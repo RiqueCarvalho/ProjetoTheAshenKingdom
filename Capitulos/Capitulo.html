@@ -3,12 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>História - Era Meiji</title>
-    <link rel="stylesheet" href="Capitulo.css">
+
+    <link rel="stylesheet" href="Capitulo.css" />
   </head>
+
   <body>
-    <!-- TELA CAPÍTULO I -->
+    <!-- ========================================= -->
+    <!-- CAPÍTULO I -->
+    <!-- ========================================= -->
+
     <div id="tela1" class="tela-jogo ativa">
+      <div class="titulo-capitulo">CAPÍTULO I</div>
+
       <div class="caixa-texto">
         O jogo se passa nos primeiros anos da Era Meiji (fim do século XIX),
         logo após a queda do Shogunato. O Japão tenta se modernizar, mas o país
@@ -18,13 +26,23 @@
         a trabalhar em minas de ópio e ferro para financiar uma nova guerra
         civil.
       </div>
-      <button class="btn-proximo" onclick="mudarTela('tela2')">
+
+      <div class="controles-narracao">
+        <button class="btn-iniciar-narracao">▶ INICIAR NARRAÇÃO</button>
+      </div>
+
+      <button class="btn-proximo" disabled>
         PRÓXIMO <span class="seta">&gt;</span>
       </button>
     </div>
 
-    <!-- TELA CAPÍTULO II -->
+    <!-- ========================================= -->
+    <!-- CAPÍTULO II -->
+    <!-- ========================================= -->
+
     <div id="tela2" class="tela-jogo">
+      <div class="titulo-capitulo">CAPÍTULO II</div>
+
       <div class="caixa-texto">
         O som dos tambores de guerra ecoava pelas montanhas que cercavam a Vila
         de Kisaragi. O cheiro de fumaça precedia os homens da Aliança do Corvo.
@@ -32,13 +50,23 @@
         misturados a katanas ancestrais, eles cercaram o vilarejo sem dar chance
         de fuga.
       </div>
-      <button class="btn-proximo" onclick="mudarTela('tela3')">
+
+      <div class="controles-narracao">
+        <button class="btn-iniciar-narracao">▶ INICIAR NARRAÇÃO</button>
+      </div>
+
+      <button class="btn-proximo" disabled>
         PRÓXIMO <span class="seta">&gt;</span>
       </button>
     </div>
 
-    <!-- TELA CAPÍTULO III -->
+    <!-- ========================================= -->
+    <!-- CAPÍTULO III -->
+    <!-- ========================================= -->
+
     <div id="tela3" class="tela-jogo">
+      <div class="titulo-capitulo">CAPÍTULO III</div>
+
       <div class="caixa-texto">
         Nas sombras da floresta de bambu que margeava a vila destruída, olhos
         atentos observavam a partida dos soldados. Era Jin, um dos últimos
@@ -48,26 +76,26 @@
         sobreviventes de vilas vizinhas começavam a se agrupar, movidos pelo
         desespero e pelo desejo de vingança.
       </div>
-      <button class="btn-proximo" onclick="iniciarJogo()">
-        PRÓXIMO <span class="seta">&gt;</span>
+
+      <div class="controles-narracao">
+        <button class="btn-iniciar-narracao">▶ INICIAR NARRAÇÃO</button>
+      </div>
+
+      <button class="btn-iniciar-jogo" disabled>
+        INICIAR JOGO <span class="seta">&gt;</span>
       </button>
     </div>
 
-    <script>
-      function mudarTela(idProximaTela) {
-        // Esconde todas as telas
-        const telas = document.querySelectorAll(".tela-jogo");
-        telas.forEach((tela) => tela.classList.remove("ativa"));
+    <!-- ========================================= -->
+    <!-- STATUS DA NARRAÇÃO -->
+    <!-- ========================================= -->
 
-        // Mostra a tela desejada
-        document.getElementById(idProximaTela).classList.add("ativa");
-      }
+    <div id="statusNarracao">🎙️ Narrador: Optimus Prime</div>
 
-      function iniciarJogo() {
-        alert("Iniciando a gameplay!");
-        // Aqui você pode redirecionar para a fase do jogo, ex:
-        // window.location.href = "fase1.html";
-      }
-    </script>
+    <!-- ========================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================= -->
+
+    <script src="Capitulo.js"></script>
   </body>
 </html>

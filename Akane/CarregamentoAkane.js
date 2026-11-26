@@ -122,7 +122,7 @@ function animarCarregamento(tempo) {
             if (musica && !Number.isNaN(musica.currentTime)) {
                 sessionStorage.setItem(CHAVE_TEMPO_MUSICA, String(musica.currentTime));
             }
-            window.location.href = "TelaInicial2.html";
+            window.location.href = "../Capitulos/Capitulo.html";
         }, 1000);
     }
 }
