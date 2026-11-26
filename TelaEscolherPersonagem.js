@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
-  // ELEMENTOS DA TELA
+  // ELEMENTOS
   // ==========================================
 
   const slots = document.querySelectorAll(".personagem-slot");
-  const botoesSelecionar = document.querySelectorAll(".btn-selecionar");
 
   const btnVoltar = document.getElementById("btn-voltar");
 
@@ -14,155 +13,172 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnConfirmarInicio = document.getElementById("btn-confirmar-inicio");
   const btnCancelar = document.getElementById("btn-cancelar");
 
-  let personagemEscolhido = null;
-
   // ==========================================
-  // CAMINHOS DAS TELAS DOS PERSONAGENS
+  // PERSONAGENS E DESTINOS
   // ==========================================
 
-  const PAGINA_AKANE = "./Akane/TelaAkane.html";
+  const personagens = {
+    1: {
+      nome: "Samurai Sombrio",
+      pagina: "./Akane/TelaAkane.html",
+      abrirDiretamente: true,
+    },
 
-  const PAGINA_RONIN = "./Ronin/TelaKurogane.html";
+    2: {
+      nome: "Guerreiro das Foices",
+      pagina: "./Hiroshi/TelaHiroshi.html",
+      abrirDiretamente: false,
+    },
 
-  const PAGINA_JOGO = "./Jogo.html";
+    3: {
+      nome: "Hiroshi, o Último Samurai",
+      pagina: "./Ronin/TelaKurogane.html",
+      abrirDiretamente: false,
+    },
+  };
 
   // ==========================================
-  // EFEITO SONORO AO PASSAR O MOUSE
+  // VARIÁVEIS
+  // ==========================================
+
+  let personagemSelecionado = null;
+
+  // ==========================================
+  // EFEITO SONORO DE HOVER
   // ==========================================
 
   function tocarSomHover() {
     try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
 
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+      if (!AudioContext) return;
 
-      osc.type = "sine";
+      const audio = new AudioContext();
 
-      osc.frequency.setValueAtTime(320, ctx.currentTime);
+      const oscilador = audio.createOscillator();
+      const volume = audio.createGain();
 
-      osc.frequency.exponentialRampToValueAtTime(520, ctx.currentTime + 0.08);
+      oscilador.connect(volume);
+      volume.connect(audio.destination);
 
-      gain.gain.setValueAtTime(0.04, ctx.currentTime);
+      oscilador.type = "sine";
 
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+      oscilador.frequency.setValueAtTime(600, audio.currentTime);
 
-      osc.connect(gain);
-      gain.connect(ctx.destination);
+      volume.gain.setValueAtTime(0.04, audio.currentTime);
 
-      osc.start();
-      osc.stop(ctx.currentTime + 0.08);
-    } catch (e) {}
+      volume.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.08);
+
+      oscilador.start();
+      oscilador.stop(audio.currentTime + 0.08);
+
+      oscilador.onended = () => audio.close();
+    } catch (erro) {
+      console.warn("Erro ao reproduzir som:", erro);
+    }
   }
 
   // ==========================================
-  // REDIRECIONAMENTO DOS PERSONAGENS
+  // TRANSIÇÃO DE PÁGINA
   // ==========================================
 
-  function abrirTelaPersonagem(nome, caminho) {
-    localStorage.setItem("personagemSelecionado", nome);
-
+  function irParaPagina(pagina) {
     document.body.style.transition = "opacity 0.8s ease";
     document.body.style.opacity = "0";
 
     setTimeout(() => {
-      window.location.href = caminho;
+      window.location.href = pagina;
     }, 800);
   }
 
   // ==========================================
-  // VERIFICAR PERSONAGEM CLICADO
-  // ==========================================
-
-  function verificarPersonagem(slot) {
-    const personagem = slot.dataset.personagem;
-
-    // SAMURAI SOMBRIO
-    if (personagem === "Samurai Sombrio") {
-      abrirTelaPersonagem("Samurai Sombrio", PAGINA_AKANE);
-
-      return;
-    }
-
-    // RONIN ESCARLATE - SLOT 3 (VERMELHO)
-    if (personagem === "Ronin Escarlate") {
-      abrirTelaPersonagem("Ronin Escarlate", PAGINA_RONIN);
-
-      return;
-    }
-
-    // DEMAIS PERSONAGENS
-    selecionarPersonagem(slot);
-  }
-
-  // ==========================================
-  // CLIQUE NOS PERSONAGENS
-  // ==========================================
-
-  slots.forEach((slot) => {
-    slot.addEventListener("mouseenter", () => {
-      tocarSomHover();
-    });
-
-    slot.addEventListener("click", () => {
-      verificarPersonagem(slot);
-    });
-  });
-
-  // ==========================================
-  // BOTÕES SELECIONAR
-  // ==========================================
-
-  botoesSelecionar.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-
-      const slot = btn.closest(".personagem-slot");
-
-      verificarPersonagem(slot);
-    });
-  });
-
-  // ==========================================
-  // SELECIONAR PERSONAGEM PELO MODAL
+  // SELECIONAR PERSONAGEM
   // ==========================================
 
   function selecionarPersonagem(slot) {
-    slots.forEach((s) => {
-      s.classList.remove("ativo");
+    const botao = slot.querySelector(".btn-selecionar");
+
+    if (!botao) return;
+
+    const id = botao.dataset.id;
+
+    const personagem = personagens[id];
+
+    if (!personagem) return;
+
+    personagemSelecionado = personagem;
+
+    // Salva o personagem selecionado
+    localStorage.setItem("personagemSelecionado", personagem.nome);
+
+    // Remove a seleção dos outros personagens
+    slots.forEach((item) => {
+      item.classList.remove("ativo");
     });
 
+    // Ativa o personagem escolhido
     slot.classList.add("ativo");
 
-    personagemEscolhido = slot.dataset.personagem;
+    // ======================================
+    // SAMURAI SOMBRIO
+    // ======================================
 
-    modalTexto.textContent = `Você escolheu: ${personagemEscolhido}. Deseja continuar?`;
+    if (personagem.abrirDiretamente) {
+      irParaPagina(personagem.pagina);
+      return;
+    }
+
+    // ======================================
+    // DEMAIS PERSONAGENS: ABRIR MODAL
+    // ======================================
+
+    modalTexto.textContent = `Você escolheu ${personagem.nome}. Deseja iniciar sua jornada?`;
 
     modal.classList.remove("hidden");
   }
 
   // ==========================================
+  // EVENTOS DOS PERSONAGENS
+  // ==========================================
+
+  slots.forEach((slot) => {
+    // Clique no personagem ou no botão
+    slot.addEventListener("click", () => {
+      selecionarPersonagem(slot);
+    });
+
+    // Som ao passar o mouse
+    slot.addEventListener("mouseenter", () => {
+      tocarSomHover();
+    });
+  });
+
+  // ==========================================
   // BOTÃO VOLTAR
   // ==========================================
 
-  btnVoltar.addEventListener("click", () => {
-    window.location.href = "TelaInicial.html";
-  });
+  if (btnVoltar) {
+    btnVoltar.addEventListener("click", () => {
+      irParaPagina("./TelaInicial2.html");
+    });
+  }
 
   // ==========================================
-  // CONFIRMAR ESCOLHA
+  // CONFIRMAR JORNADA
   // ==========================================
 
   btnConfirmarInicio.addEventListener("click", () => {
-    if (!personagemEscolhido) return;
+    if (!personagemSelecionado) return;
 
-    localStorage.setItem("personagemSelecionado", personagemEscolhido);
+    // Salva novamente o personagem escolhido
+    localStorage.setItem("personagemSelecionado", personagemSelecionado.nome);
 
-    window.location.href = PAGINA_JOGO;
+    // Abre a página correspondente ao personagem
+    irParaPagina(personagemSelecionado.pagina);
   });
 
   // ==========================================
-  // CANCELAR ESCOLHA
+  // CANCELAR / TROCAR PERSONAGEM
   // ==========================================
 
   btnCancelar.addEventListener("click", () => {
@@ -172,6 +188,8 @@ document.addEventListener("DOMContentLoaded", () => {
       slot.classList.remove("ativo");
     });
 
-    personagemEscolhido = null;
+    personagemSelecionado = null;
+
+    localStorage.removeItem("personagemSelecionado");
   });
 });
