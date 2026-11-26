@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   // =========================================
   // CONFIGURAÇÃO DOS ÁUDIOS
@@ -160,8 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
     botao.addEventListener("click", () => {
       if (!narracaoConcluida) return;
 
-      const telaAtualElemento = document.getElementById(telaAtual);
-
       const proximaTela = telaAtual === "tela1" ? "tela2" : "tela3";
 
       window.mudarTela(proximaTela);
@@ -169,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // =========================================
-  // FINALIZAR HISTÓRIA
+  // FINALIZAR HISTÓRIA E IR PARA ARENA I
   // =========================================
 
   const btnIniciarJogo = document.querySelector(".btn-iniciar-jogo");
@@ -180,8 +179,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       narrador.pause();
 
-      // ALTERE PARA O CAMINHO REAL DA SUA GAMEPLAY
-      window.location.href = "fase1.html";
+      narrador.currentTime = 0;
+
+      // Transição de tela
+      document.body.style.transition = "opacity 0.8s ease";
+      document.body.style.opacity = "0";
+
+      // Redireciona para a Arena I
+      setTimeout(() => {
+        window.location.href = "../Arenas/TelaArenaI.html";
+      }, 800);
     });
   }
 

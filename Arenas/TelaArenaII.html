@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Ashen Kingdom - Arena II</title>
+
+    <link rel="icon" type="image/png" href="../assets/favicon_samurai.png" />
+    <link rel="stylesheet" href="TelaArenaII.css">
+
+</head>
+
+<body>
+
+    <main class="arena">
+
+        <div class="fundo-arena"></div>
+        <div class="camada-escura"></div>
+
+        <!-- INFORMAÇÕES SUPERIORES -->
+
+        <header class="topo-arena">
+
+            <div class="informacao-topo">
+                <span>ATAQUE</span>
+                <strong id="valorAtaque">0</strong>
+            </div>
+
+            <div class="informacao-topo jogador">
+                <span>HERÓI</span>
+                <strong id="nomeUsuario">JOGADOR</strong>
+            </div>
+
+        </header>
+
+        <!-- CAMPO DE BATALHA -->
+
+        <section class="campo-batalha">
+
+            <!-- HERÓI -->
+
+            <div class="lado-combate" id="ladoHeroi">
+
+                <div class="identificacao">
+                    <h2 id="nomeHeroi">Herói</h2>
+                    <p id="vidaHeroiTexto">0/0 HP</p>
+                </div>
+
+                <div class="barra-vida">
+                    <div id="vidaHeroiBarra"></div>
+                </div>
+
+                <div class="personagem-container">
+                    <img id="imagemHeroi" src="" alt="Herói escolhido">
+                </div>
+
+            </div>
+
+            <!-- VILÃO -->
+
+            <div class="lado-combate" id="ladoVilao">
+
+                <div class="identificacao">
+                    <h2 id="nomeVilao">Vilão</h2>
+                    <p id="vidaVilaoTexto">0/0 HP</p>
+                </div>
+
+                <div class="barra-vida">
+                    <div id="vidaVilaoBarra"></div>
+                </div>
+
+                <div class="personagem-container">
+                    <img id="imagemVilao" src="" alt="Vilão sorteado">
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- REGISTRO DA BATALHA -->
+
+        <section class="painel-batalha">
+
+            <div id="registroBatalha" class="registro">
+                A batalha está prestes a começar...
+            </div>
+
+        </section>
+
+        <!-- BOTÕES -->
+
+        <footer class="controles">
+
+            <button id="btnAtacar" class="botao atacar">
+                ⚔ ATACAR
+            </button>
+
+            <button id="btnReiniciar" class="botao reiniciar" hidden>
+                ↻ REINICIAR BATALHA
+            </button>
+
+        </footer>
+
+        <!-- RESULTADO -->
+
+        <div id="resultadoBatalha" class="resultado" hidden>
+
+            <div class="resultado-card">
+
+                <h2 id="tituloResultado">VITÓRIA!</h2>
+
+                <p id="textoResultado"></p>
+
+                <button id="btnResultado" class="botao atacar">
+                    AVANÇAR PARA ARENA III
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- EFEITOS -->
+
+        <div id="efeitosCombate"></div>
+
+    </main>
+
+    <!-- SCRIPTS -->
+
+    <script src="../personagens-ashen.js"></script>
+    <script src="TelaArenaII.js"></script>
+
+</body>
+
+</html>

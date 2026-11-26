@@ -1,0 +1,433 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #08090d;
+    color: #f5e8ca;
+    font-family: Georgia, serif;
+}
+
+button {
+    font-family: Georgia, serif;
+}
+
+.arena {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+/* =========================================
+   FUNDO
+========================================= */
+
+.fundo-arena {
+    position: absolute;
+    inset: 0;
+    background: url("ArenaIII.jpg") center center / cover no-repeat;
+    z-index: 0;
+}
+
+.camada-escura {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 10, 0.55);
+    z-index: 1;
+}
+
+/* =========================================
+   TOPO
+========================================= */
+
+.topo-arena {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(850px, 90%);
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 15px;
+    z-index: 5;
+}
+
+.informacao-topo {
+    padding: 12px 20px;
+    background: rgba(10, 8, 8, 0.85);
+    border: 1px solid #b99a58;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    text-align: center;
+}
+
+.informacao-topo span {
+    color: #c7a65d;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.informacao-topo strong {
+    color: #f5e8ca;
+    font-size: 20px;
+}
+
+/* =========================================
+   CAMPO DE BATALHA
+========================================= */
+
+.campo-batalha {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 9% 125px;
+}
+
+.lado-combate {
+    width: 35%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.identificacao {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 5px #000;
+}
+
+.identificacao h2 {
+    color: #f5e8ca;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.identificacao p {
+    color: #e4c77e;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* =========================================
+   BARRA DE VIDA
+========================================= */
+
+.barra-vida {
+    width: 100%;
+    height: 19px;
+    background: #350b0b;
+    border: 1px solid #b99a58;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.barra-vida div {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #8b1111, #e33b2f);
+    transition: width 0.4s ease;
+}
+
+/* =========================================
+   PERSONAGENS
+========================================= */
+
+.personagem-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.personagem-container img {
+    max-width: 100%;
+    height: clamp(250px, 50vh, 480px);
+    object-fit: contain;
+    object-position: bottom;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.8));
+}
+
+/* =========================================
+   ANIMAÇÕES DE COMBATE
+========================================= */
+
+.atacando {
+    animation: ataque 0.35s ease;
+}
+
+.atacando-vilao {
+    animation: ataqueVilao 0.35s ease;
+}
+
+.recebendo-dano {
+    animation: dano 0.35s ease;
+}
+
+.derrotado {
+    animation: cair 0.8s forwards;
+}
+
+@keyframes ataque {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(55px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes ataqueVilao {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-55px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes dano {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    25%,
+    75% {
+        filter: brightness(2) sepia(1) saturate(5);
+    }
+
+    50% {
+        filter: brightness(0.5);
+    }
+}
+
+@keyframes cair {
+    to {
+        opacity: 0.25;
+        transform: translateY(35px) rotate(-8deg);
+    }
+}
+
+/* =========================================
+   REGISTRO DA BATALHA
+========================================= */
+
+.painel-batalha {
+    position: absolute;
+    z-index: 6;
+    bottom: 105px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(700px, 85%);
+}
+
+.registro {
+    min-height: 65px;
+    max-height: 110px;
+    overflow-y: auto;
+    padding: 15px 20px;
+    background: rgba(8, 7, 7, 0.88);
+    border: 1px solid #b99a58;
+    color: #f5e8ca;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* =========================================
+   CONTROLES
+========================================= */
+
+.controles {
+    position: absolute;
+    z-index: 7;
+    bottom: 3.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 90%;
+}
+
+.botao {
+    min-width: 180px;
+    padding: 13px 22px;
+    background: linear-gradient(180deg, #4a351b, #21170e);
+    border: 1px solid #c7a65d;
+    color: #f5e8ca;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.botao:hover {
+    background: linear-gradient(180deg, #705023, #39230e);
+    border-color: #f5d88b;
+    transform: scale(1.04);
+}
+
+.botao:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.atacar {
+    color: #ffe5b0;
+}
+
+.reiniciar {
+    background: linear-gradient(180deg, #542323, #250d0d);
+}
+
+/* =========================================
+   RESULTADO
+========================================= */
+
+.resultado {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.82);
+}
+
+.resultado[hidden] {
+    display: none;
+}
+
+.resultado-card {
+    width: min(420px, 90%);
+    padding: 35px;
+    background: #17100d;
+    border: 2px solid #c7a65d;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.resultado-card h2 {
+    color: #e4c77e;
+    font-size: 30px;
+    margin-bottom: 18px;
+}
+
+.resultado-card p {
+    color: #f5e8ca;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* =========================================
+   EFEITOS DE DANO
+========================================= */
+
+#efeitosCombate {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.numero-dano {
+    position: absolute;
+    color: #ff3838;
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000;
+    animation: flutuar 0.9s forwards;
+}
+
+@keyframes flutuar {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-65px) scale(1.3);
+    }
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .campo-batalha {
+        padding: 0 4% 145px;
+    }
+
+    .lado-combate {
+        width: 43%;
+    }
+
+    .personagem-container img {
+        height: clamp(220px, 38vh, 350px);
+    }
+
+    .painel-batalha {
+        bottom: 105px;
+        width: 92%;
+    }
+
+    .controles {
+        bottom: 2%;
+        gap: 8px;
+    }
+
+    .botao {
+        min-width: 0;
+        padding: 12px 14px;
+        font-size: 12px;
+    }
+
+    .topo-arena {
+        top: 10px;
+    }
+
+    .identificacao h2 {
+        font-size: 18px;
+    }
+}
