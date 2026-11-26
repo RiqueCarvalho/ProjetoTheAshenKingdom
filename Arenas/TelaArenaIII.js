@@ -390,7 +390,13 @@ document.addEventListener("DOMContentLoaded", () => {
     elementos.btnResultado.addEventListener("click", () => {
 
         if (batalhaFinalizada && vidaVilao <= 0) {
-            window.location.href = PAGINA_PROXIMA_ARENA;
+
+            if (window.pararMusicaArena) {
+                window.pararMusicaArena();
+            }
+
+            window.location.href = "../TelaCréditosFinais.html";
+
         }
 
     });
