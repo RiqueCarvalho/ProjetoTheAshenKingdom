@@ -1,216 +1,177 @@
-const slots = document.querySelectorAll('.personagem-slot');
-const botoesSelecionar = document.querySelectorAll('.btn-selecionar');
-const btnVoltar = document.getElementById('btn-voltar');
+document.addEventListener("DOMContentLoaded", () => {
+  // ==========================================
+  // ELEMENTOS DA TELA
+  // ==========================================
 
-const modal = document.getElementById('modal-confirmacao');
-const modalTexto = document.getElementById('modal-texto');
-const btnConfirmarInicio = document.getElementById('btn-confirmar-inicio');
-const btnCancelar = document.getElementById('btn-cancelar');
+  const slots = document.querySelectorAll(".personagem-slot");
+  const botoesSelecionar = document.querySelectorAll(".btn-selecionar");
 
-let personagemEscolhido = null;
+  const btnVoltar = document.getElementById("btn-voltar");
 
+  const modal = document.getElementById("modal-confirmacao");
+  const modalTexto = document.getElementById("modal-texto");
 
-// ==========================================
-// CAMINHO DA TELA DO SAMURAI SOMBRIO
-// ==========================================
+  const btnConfirmarInicio = document.getElementById("btn-confirmar-inicio");
+  const btnCancelar = document.getElementById("btn-cancelar");
 
-const PAGINA_AKANE = './Akane/TelaAkane.html';
+  let personagemEscolhido = null;
 
+  // ==========================================
+  // CAMINHOS DAS TELAS DOS PERSONAGENS
+  // ==========================================
 
-// ==========================================
-// EFEITO SONORO
-// ==========================================
+  const PAGINA_AKANE = "./Akane/TelaAkane.html";
 
-function tocarSomHover() {
+  const PAGINA_RONIN = "./Ronin/TelaKurogane.html";
 
+  const PAGINA_JOGO = "./Jogo.html";
+
+  // ==========================================
+  // EFEITO SONORO AO PASSAR O MOUSE
+  // ==========================================
+
+  function tocarSomHover() {
     try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
 
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
+      osc.type = "sine";
 
-        osc.type = 'sine';
+      osc.frequency.setValueAtTime(320, ctx.currentTime);
 
-        osc.frequency.setValueAtTime(320, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(520, ctx.currentTime + 0.08);
 
-        osc.frequency.exponentialRampToValueAtTime(
-            520,
-            ctx.currentTime + 0.08
-        );
+      gain.gain.setValueAtTime(0.04, ctx.currentTime);
 
-        gain.gain.setValueAtTime(0.04, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
 
-        gain.gain.exponentialRampToValueAtTime(
-            0.001,
-            ctx.currentTime + 0.08
-        );
+      osc.connect(gain);
+      gain.connect(ctx.destination);
 
-        osc.connect(gain);
-        gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.08);
+    } catch (e) {}
+  }
 
-        osc.start();
-        osc.stop(ctx.currentTime + 0.08);
+  // ==========================================
+  // REDIRECIONAMENTO DOS PERSONAGENS
+  // ==========================================
 
-    } catch (e) {
+  function abrirTelaPersonagem(nome, caminho) {
+    localStorage.setItem("personagemSelecionado", nome);
 
-    }
-
-}
-
-
-// ==========================================
-// REDIRECIONAR PARA A TELA DA AKANE
-// ==========================================
-
-function abrirTelaAkane() {
-
-    localStorage.setItem(
-        'personagemSelecionado',
-        'Samurai Sombrio'
-    );
-
-    document.body.style.transition = 'opacity 0.8s ease';
-
-    document.body.style.opacity = '0';
+    document.body.style.transition = "opacity 0.8s ease";
+    document.body.style.opacity = "0";
 
     setTimeout(() => {
-
-        window.location.href = PAGINA_AKANE;
-
+      window.location.href = caminho;
     }, 800);
+  }
 
-}
+  // ==========================================
+  // VERIFICAR PERSONAGEM CLICADO
+  // ==========================================
 
+  function verificarPersonagem(slot) {
+    const personagem = slot.dataset.personagem;
 
-// ==========================================
-// CLIQUE NOS PERSONAGENS
-// ==========================================
+    // SAMURAI SOMBRIO
+    if (personagem === "Samurai Sombrio") {
+      abrirTelaPersonagem("Samurai Sombrio", PAGINA_AKANE);
 
-slots.forEach((slot) => {
+      return;
+    }
 
-    slot.addEventListener('mouseenter', () => {
+    // RONIN ESCARLATE - SLOT 3 (VERMELHO)
+    if (personagem === "Ronin Escarlate") {
+      abrirTelaPersonagem("Ronin Escarlate", PAGINA_RONIN);
 
-        tocarSomHover();
+      return;
+    }
 
+    // DEMAIS PERSONAGENS
+    selecionarPersonagem(slot);
+  }
+
+  // ==========================================
+  // CLIQUE NOS PERSONAGENS
+  // ==========================================
+
+  slots.forEach((slot) => {
+    slot.addEventListener("mouseenter", () => {
+      tocarSomHover();
     });
 
-
-    slot.addEventListener('click', () => {
-
-        // PRIMEIRO PERSONAGEM: SAMURAI SOMBRIO
-
-        if (slot.classList.contains('slot-1')) {
-
-            abrirTelaAkane();
-
-            return;
-
-        }
-
-        // OUTROS PERSONAGENS
-
-        selecionarPersonagem(slot);
-
+    slot.addEventListener("click", () => {
+      verificarPersonagem(slot);
     });
+  });
 
-});
+  // ==========================================
+  // BOTÕES SELECIONAR
+  // ==========================================
 
+  botoesSelecionar.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
 
-// ==========================================
-// BOTÕES SELECIONAR
-// ==========================================
+      const slot = btn.closest(".personagem-slot");
 
-botoesSelecionar.forEach((btn) => {
-
-    btn.addEventListener('click', (e) => {
-
-        e.stopPropagation();
-
-        const slot = btn.closest('.personagem-slot');
-
-        // BOTÃO DO SAMURAI SOMBRIO
-
-        if (slot.classList.contains('slot-1')) {
-
-            abrirTelaAkane();
-
-            return;
-
-        }
-
-        // BOTÕES DOS OUTROS PERSONAGENS
-
-        selecionarPersonagem(slot);
-
+      verificarPersonagem(slot);
     });
+  });
 
-});
+  // ==========================================
+  // SELECIONAR PERSONAGEM PELO MODAL
+  // ==========================================
 
-
-// ==========================================
-// SELECIONAR PERSONAGEM
-// ==========================================
-
-function selecionarPersonagem(slot) {
-
+  function selecionarPersonagem(slot) {
     slots.forEach((s) => {
-
-        s.classList.remove('ativo');
-
+      s.classList.remove("ativo");
     });
 
-    slot.classList.add('ativo');
+    slot.classList.add("ativo");
 
     personagemEscolhido = slot.dataset.personagem;
 
-    modalTexto.textContent =
-        `Você escolheu: ${personagemEscolhido}. Deseja continuar?`;
+    modalTexto.textContent = `Você escolheu: ${personagemEscolhido}. Deseja continuar?`;
 
-    modal.classList.remove('hidden');
+    modal.classList.remove("hidden");
+  }
 
-}
+  // ==========================================
+  // BOTÃO VOLTAR
+  // ==========================================
 
+  btnVoltar.addEventListener("click", () => {
+    window.location.href = "TelaInicial.html";
+  });
 
-// ==========================================
-// BOTÃO VOLTAR
-// ==========================================
+  // ==========================================
+  // CONFIRMAR ESCOLHA
+  // ==========================================
 
-btnVoltar.addEventListener('click', () => {
+  btnConfirmarInicio.addEventListener("click", () => {
+    if (!personagemEscolhido) return;
 
-    window.location.href = 'TelaInicial.html';
+    localStorage.setItem("personagemSelecionado", personagemEscolhido);
 
-});
+    window.location.href = PAGINA_JOGO;
+  });
 
+  // ==========================================
+  // CANCELAR ESCOLHA
+  // ==========================================
 
-// ==========================================
-// CONFIRMAR ESCOLHA DOS OUTROS PERSONAGENS
-// ==========================================
+  btnCancelar.addEventListener("click", () => {
+    modal.classList.add("hidden");
 
-btnConfirmarInicio.addEventListener('click', () => {
+    slots.forEach((slot) => {
+      slot.classList.remove("ativo");
+    });
 
-    if (!personagemEscolhido) {
-
-        return;
-
-    }
-
-    localStorage.setItem(
-        'personagemSelecionado',
-        personagemEscolhido
-    );
-
-    window.location.href = 'Jogo.html';
-
-});
-
-
-// ==========================================
-// CANCELAR ESCOLHA
-// ==========================================
-
-btnCancelar.addEventListener('click', () => {
-
-    modal.classList.add('hidden');
-
+    personagemEscolhido = null;
+  });
 });

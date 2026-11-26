@@ -1,58 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>The Ashen Kingdom - Selecione seu Personagem</title>
+
     <link rel="stylesheet" href="TelaEscolherPersonagem.css" />
-    <link rel="icon" type="image/png" href="./assets/favicon_samurai.png">
-</head>
+    <link rel="icon" type="image/png" href="./assets/favicon_samurai.png" />
+  </head>
 
-<body>
-
+  <body>
     <main class="tela-jogo">
-        <!-- Imagem ocupando 100% da tela -->
-        <img src="./assets/image_b51cbc98.jpg" alt="Selecione seu Personagem" class="bg-imagem" />
+      <!-- IMAGEM DE FUNDO -->
+      <img
+        src="./assets/image_b51cbc98.jpg"
+        alt="Selecione seu Personagem"
+        class="bg-imagem"
+      />
 
-        <!-- Botão Voltar (seta azul no canto superior esquerdo) -->
-        <button id="btn-voltar" class="area-voltar" title="Voltar" aria-label="Voltar"></button>
+      <!-- BOTÃO VOLTAR -->
+      <button
+        id="btn-voltar"
+        class="area-voltar"
+        title="Voltar"
+        aria-label="Voltar"
+      ></button>
 
-        <!-- Personagem 1: Samurai Sombrio (Esquerda) -->
-        <div class="personagem-slot slot-1" data-personagem="Samurai Sombrio">
-            <div class="led-aura"></div>
+      <!-- PERSONAGEM 1: SAMURAI SOMBRIO -->
+      <div class="personagem-slot slot-1" data-personagem="Samurai Sombrio">
+        <div class="led-aura"></div>
 
-            <button class="btn-selecionar" data-id="1" onclick="window.location.href='./Akane/TelaAkane.html'">
-                Selecionar
-            </button>
+        <button class="btn-selecionar" data-id="1">Selecionar</button>
+      </div>
+
+      <!-- PERSONAGEM 2: GUERREIRO DAS FOICES -->
+      <div
+        class="personagem-slot slot-2"
+        data-personagem="Guerreiro das Foices"
+      >
+        <div class="led-aura"></div>
+
+        <button class="btn-selecionar" data-id="2">Selecionar</button>
+      </div>
+
+      <!-- PERSONAGEM 3: RONIN ESCARLATE (PERSONAGEM VERMELHO) -->
+      <div class="personagem-slot slot-3" data-personagem="Ronin Escarlate">
+        <div class="led-aura"></div>
+
+        <button class="btn-selecionar" data-id="3">Selecionar</button>
+      </div>
+
+      <!-- MODAL DE CONFIRMAÇÃO -->
+      <div id="modal-confirmacao" class="modal hidden">
+        <div class="modal-box">
+          <h2 id="modal-titulo">Personagem Selecionado</h2>
+
+          <p id="modal-texto"></p>
+
+          <div class="modal-acoes">
+            <button id="btn-confirmar-inicio">Iniciar Jornada</button>
+
+            <button id="btn-cancelar">Trocar</button>
+          </div>
         </div>
-
-        <!-- Personagem 2: Ronin Escarlate (Centro) -->
-        <div class="personagem-slot slot-2" data-personagem="Ronin Escarlate">
-            <div class="led-aura"></div>
-            <button class="btn-selecionar" data-id="2">Selecionar</button>
-        </div>
-
-        <!-- Personagem 3: Guerreiro das Foices (Direita) -->
-        <div class="personagem-slot slot-3" data-personagem="Guerreiro das Foices">
-            <div class="led-aura"></div>
-            <button class="btn-selecionar" data-id="3">Selecionar</button>
-        </div>
-
-        <!-- Modal de confirmação -->
-        <div id="modal-confirmacao" class="modal hidden">
-            <div class="modal-box">
-                <h2 id="modal-titulo">Personagem Selecionado</h2>
-                <p id="modal-texto"></p>
-                <div class="modal-acoes">
-                    <button id="btn-confirmar-inicio">Iniciar Jornada</button>
-                    <button id="btn-cancelar">Trocar</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </main>
 
     <script src="TelaEscolherPersonagem.js"></script>
-</body>
-
+  </body>
 </html>

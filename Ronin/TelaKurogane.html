@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Kurogane no Oni - The Last Kingdom</title>
+
+    <link rel="icon" type="image/png" href="../assets/favicon_samurai.png" />
+    <link rel="stylesheet" href="TelaKurogane.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almendra:wght@400;700&family=MedievalSharp&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main class="tela-personagem">
+      <!-- BOTÃO VOLTAR -->
+      <button class="botao-voltar" id="btnVoltar" aria-label="Voltar">
+        <img src="anterior.png" alt="Voltar" />
+      </button>
+
+      <!-- MOLDURA PRINCIPAL -->
+      <div class="moldura-principal">
+        <!-- LADO ESQUERDO -->
+        <section class="painel-esquerdo">
+          <!-- RETRATO DO PERSONAGEM -->
+          <div class="moldura-retrato">
+            <div class="retrato">
+              <!-- IMAGEM DO KUROGANE -->
+              <img
+                src="kurogane.png"
+                alt="Kurogane no Oni"
+                class="imagem-personagem"
+              />
+            </div>
+          </div>
+
+          <!-- INFORMAÇÕES -->
+          <div class="informacoes-personagem">
+            <h2>Kurogane no Oni (O Oni de Ferro Negro)</h2>
+
+            <p>
+              <strong>Nome verdadeiro:</strong>
+              Ryūjin “Kuro” Hoshikage
+            </p>
+
+            <p>
+              <strong>Apelido:</strong>
+              Kurogane no Oni
+            </p>
+
+            <p>
+              <strong>Título:</strong>
+              O Caçador de Sombras do Norte
+            </p>
+
+            <p>
+              <strong>Origem:</strong>
+              Hokkai, Japão
+            </p>
+          </div>
+
+          <!-- BOTÃO ESCOLHER -->
+          <button class="botao-escolher" id="btnEscolher">Escolher</button>
+        </section>
+
+        <!-- LADO DIREITO -->
+        <section class="painel-direito">
+          <div class="pergaminho">
+            <div class="texto-historia">
+              <p>
+                Nasceu em uma aldeia isolada nas montanhas nevadas de Hokkai,
+                filho de um ferreiro lendário e de uma sacerdotisa que servia ao
+                espírito da montanha. Quando ainda era criança, um clã rival
+                invadiu a aldeia em busca do segredo da forja de aço negro
+                guardado por seu pai. A aldeia foi consumida pelas chamas. Seu
+                pai morreu defendendo a forja, enquanto sua mãe foi sacrificada
+                em um ritual sombrio. Naquela noite, Ryūjin perdeu tudo. Mas,
+                nas cinzas de sua antiga vida, nasceu Kurogane no Oni.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="TelaKurogane.js"></script>
+  </body>
+</html>
